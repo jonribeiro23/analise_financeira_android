@@ -1,0 +1,53 @@
+meuJson += "{";
+    meuJson += "\"grafico\": \"./img/graph.png\",";
+    meuJson += "\"knn_regression\": 0.9358560221272862,";
+    meuJson += "\"linear_regression\": 0.9748788985463605,";
+    meuJson += "\"quadratic_regression_2\": 0.9766567734245559,";
+    meuJson += "\"quadratic_regression_3\": 0.9612153045678694,";
+    meuJson += "\"cursos\": [";
+    meuJson += "{";
+      meuJson += "\"nome\": \"android\",";
+      meuJson += "\"aulas\": 25,";
+      meuJson += "\"completo\": false";
+      meuJson += "},";
+    meuJson += "{";
+      meuJson += "\"nome\": \"PHP\",";
+      meuJson += "\"aulas\": 23,";
+      meuJson += "\"completo\": false";
+      meuJson += "},";
+    meuJson += "{";
+      meuJson += "\"nome\": \"Python\",";
+      meuJson += "\"aulas\": 55,";
+      meuJson += "\"completo\": false";
+      meuJson += "},";
+    meuJson += "{";
+      meuJson += "\"nome\": \"Machine learning\",";
+      meuJson += "\"aulas\": 45,";
+      meuJson += "\"completo\": true";
+      meuJson += "}";
+    meuJson += "]";
+
+    meuJson += "}";
+
+
+
+    try {
+      JSONObject listaJson = new JSONObject(meuJson);
+      Log.i("graph",listaJson.getString("grafico"));
+      Log.i("stock", String.valueOf(listaJson.getDouble("linear_regression")));
+
+      Log.i("meujson", String.valueOf(listaJson));
+
+      Log.i("meujson", String.valueOf(listaJson.getJSONArray("cursos")));
+
+      JSONArray listaCursos = listaJson.getJSONArray("cursos");
+
+      for(int i=0; i < listaCursos.length(); i++){
+        JSONObject curso = listaCursos.getJSONObject(i);
+        Log.i("curso", curso.getString("nome"));
+        Log.i("curso", String.valueOf(curso.getInt("aulas")));
+        Log.i("curso", String.valueOf(curso.getBoolean("completo")));
+      }
+    }catch (JSONException e){
+      e.printStackTrace();
+    }
