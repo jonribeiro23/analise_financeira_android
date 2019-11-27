@@ -2,6 +2,7 @@ package com.example.json;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPostExecute(String result){
       super.onPostExecute(result);
-//      Log.i("result", result);
-//      return result;
+//      Log.i("Result", Result);
+//      return Result;
 
       try {
         JSONObject listaJson = new JSONObject(result);
@@ -131,6 +131,20 @@ public class MainActivity extends AppCompatActivity {
         Log.i("meulog", listaJson.getString("linear_regression"));
         Log.i("meulog", listaJson.getString("quadratic_regression_2"));
         Log.i("meulog", listaJson.getString("quadratic_regression_3"));
+
+
+        Intent intent = new Intent(getApplicationContext(), Result.class);
+        Bundle parametros = new Bundle();
+
+        intent.putExtra("grafico", listaJson.getString("grafico"));
+        intent.putExtra("knn_regression", listaJson.getString("knn_regression"));
+        intent.putExtra("linear_regression", listaJson.getString("linear_regression"));
+        intent.putExtra("quadratic_regression_2", listaJson.getString("quadratic_regression_2"));
+        intent.putExtra("quadratic_regression_3", listaJson.getString("quadratic_regression_3"));
+        finish();
+        startActivity(intent);
+
+
       } catch (JSONException e) {
         e.printStackTrace();
       }

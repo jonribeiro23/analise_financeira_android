@@ -78,9 +78,9 @@
 //        }
 //
 //        @Override
-//        protected void onPostExecute(String result) {
-//            super.onPostExecute(result);
-//            Log.i("result", result);
+//        protected void onPostExecute(String Result) {
+//            super.onPostExecute(Result);
+//            Log.i("Result", Result);
 //        }
 //    }
 //}
