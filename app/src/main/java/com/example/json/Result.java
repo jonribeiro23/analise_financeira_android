@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 public class Result extends AppCompatActivity {
@@ -38,7 +39,13 @@ public class Result extends AppCompatActivity {
     quadratic2.setText(getIntent().getExtras().getString("quadratic_regression_2"));
     quadratic3.setText(getIntent().getExtras().getString("quadratic_regression_3"));
 
-    Picasso.with(getApplicationContext()).load("https://stock-evaluate-api.herokuapp.com/grafico").memoryPolicy(MemoryPolicy.NO_CACHE).into(graph);
+//    Picasso.with(getApplicationContext()).load("https://stock-evaluate-api.herokuapp.com/grafico").memoryPolicy(MemoryPolicy.NO_CACHE).into(graph);
+
+    Picasso.with(getApplicationContext()).load("https://stock-evaluate-api.herokuapp.com/grafico")
+            .memoryPolicy(MemoryPolicy.NO_STORE)
+            .networkPolicy(NetworkPolicy.NO_CACHE)
+            .into(graph);
+
 
 
     voltar = findViewById(R.id.btnVoltar);
@@ -46,6 +53,8 @@ public class Result extends AppCompatActivity {
     voltar.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
+
+        Picasso.with(getApplicationContext()).invalidate("https://stock-evaluate-api.herokuapp.com/grafico");
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         finish();
