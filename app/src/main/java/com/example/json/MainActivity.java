@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
 //  private String URL = "http://www.json-generator.com/api/json/get/cqKZcoEcKq?indent=2";
 //  private String URL = "http://10.0.3.2:5000/evaluate";
 //  private String URL = "http://10.0.3.2:5000/teste_evaluate/AAPL/1-1-2015/1-1-2017";
-  private String URL = "http://10.0.3.2:5000/teste_evaluate/";
+//  private String URL = "http://10.0.3.2:5000/teste_evaluate/";
+  private String URL = "http://stock-evaluate-api.herokuapp.com/teste_evaluate/";
+
   Button btnEvaluate;
 
   @Override
@@ -126,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
       try {
         JSONObject listaJson = new JSONObject(result);
-        Log.i("meulog", listaJson.getString("grafico"));
         Log.i("meulog", listaJson.getString("knn_regression"));
         Log.i("meulog", listaJson.getString("linear_regression"));
         Log.i("meulog", listaJson.getString("quadratic_regression_2"));
@@ -136,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Result.class);
         Bundle parametros = new Bundle();
 
-        intent.putExtra("grafico", listaJson.getString("grafico"));
         intent.putExtra("knn_regression", listaJson.getString("knn_regression"));
         intent.putExtra("linear_regression", listaJson.getString("linear_regression"));
         intent.putExtra("quadratic_regression_2", listaJson.getString("quadratic_regression_2"));
