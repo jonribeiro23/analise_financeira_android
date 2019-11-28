@@ -19,6 +19,7 @@ public class Result extends AppCompatActivity {
   TextView linear;
   TextView quadratic2;
   TextView quadratic3;
+  TextView stockName;
   Button voltar;
   ImageView graph;
 
@@ -31,6 +32,7 @@ public class Result extends AppCompatActivity {
     linear = findViewById(R.id.txtLinear);
     quadratic2 = findViewById(R.id.txtQuadratic2);
     quadratic3 = findViewById(R.id.txtQuadratic3);
+    stockName = findViewById(R.id.txtStockName);
 
     graph = findViewById(R.id.imgGraph);
 
@@ -38,6 +40,7 @@ public class Result extends AppCompatActivity {
     linear.setText(getIntent().getExtras().getString("linear_regression"));
     quadratic2.setText(getIntent().getExtras().getString("quadratic_regression_2"));
     quadratic3.setText(getIntent().getExtras().getString("quadratic_regression_3"));
+    stockName.setText(getIntent().getExtras().getString("symbol"));
 
 //    Picasso.with(getApplicationContext()).load("https://stock-evaluate-api.herokuapp.com/grafico").memoryPolicy(MemoryPolicy.NO_CACHE).into(graph);
 

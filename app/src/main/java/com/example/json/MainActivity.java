@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 //  private String URL = "http://10.0.3.2:5000/teste_evaluate/AAPL/1-1-2015/1-1-2017";
 //  private String URL = "http://10.0.3.2:5000/teste_evaluate/";
   private String URL = "http://stock-evaluate-api.herokuapp.com/teste_evaluate/";
+  EditText txtSymbol;
 
   Button btnEvaluate;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     btnEvaluate.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        EditText txtSymbol;
+
         EditText txtStart;
         EditText txtEnd;
 
@@ -135,8 +136,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(getApplicationContext(), Result.class);
-        Bundle parametros = new Bundle();
 
+        txtSymbol = findViewById(R.id.edtSymbol);
+
+        intent.putExtra("symbol", txtSymbol.getText().toString());
         intent.putExtra("knn_regression", listaJson.getString("knn_regression"));
         intent.putExtra("linear_regression", listaJson.getString("linear_regression"));
         intent.putExtra("quadratic_regression_2", listaJson.getString("quadratic_regression_2"));
